@@ -223,7 +223,7 @@
     bottom:-110px;
     left:50%;
     transform:translateX(-50%);
-    width:min(480px, 40vw);
+    width:min(600px, 40vw);
     aspect-ratio:480/645;
     overflow:hidden;
   
