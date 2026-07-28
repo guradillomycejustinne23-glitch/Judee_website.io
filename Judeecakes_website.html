@@ -256,7 +256,8 @@
           <div class="contact-detail">✉ hello@itsjudee.co</div>
           <div class="contact-detail">📍 Working with brands worldwide, remotely</div>
         </div>
-        <form id="contactForm">
+       <form id="contactForm">
+          <input type="hidden" name="access_key" value="8a4dffb3-406c-4055-afd1-6436d96fb0a3">
           <div class="field">
             <label for="name">Name</label>
             <input id="name" name="name" type="text" placeholder="Your name" required>
@@ -326,13 +327,29 @@
   }, { threshold: 0.15 });
   revealEls.forEach(el => io.observe(el));
 
-  // Contact form (front-end only demo)
+  // Contact form (sends via Web3Forms)
   const form = document.getElementById('contactForm');
   const formMsg = document.getElementById('formMsg');
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    formMsg.textContent = "Thanks — I'll get back to you within a day. ✿";
-    form.reset();
+    formMsg.textContent = "Sending...";
+    const formData = new FormData(form);
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: formData
+      });
+      const result = await response.json();
+      if (result.success) {
+        formMsg.textContent = "Thanks — I'll get back to you within a day. ✿";
+        form.reset();
+      } else {
+        formMsg.textContent = "Something went wrong. Please try again.";
+      }
+    } catch (error) {
+      formMsg.textContent = "Something went wrong. Please try again.";
+    }
   });
 
   // Sample work gallery
