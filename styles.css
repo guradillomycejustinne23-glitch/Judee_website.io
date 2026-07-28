@@ -242,10 +242,17 @@
     padding:.7rem 1.1rem;
   
   }
-  @media(max-width:940px){
-    .hero-photo-col{margin-top:2.5rem; min-height:340px;}
-    .photo-frame{width:min(360px, 78vw);}
-    .role-tag{top:-40px;right:auto;left:0;}
+ @media(max-width:940px){
+  .hero-photo-col{margin-top:2.5rem; min-height:340px;}
+  .flower-behind{width:100%; max-width:400px; top:60%;}
+  .photo-frame{
+    
+    width:min(400px, 78vw);
+    position: absolute;
+   
+    bottom:-92px;
+  }
+  .role-tag{top:-40px;right:auto;left:0;}
   }
 
   .marquee{
